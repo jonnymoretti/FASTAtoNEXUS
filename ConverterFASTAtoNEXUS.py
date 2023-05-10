@@ -2,10 +2,10 @@ import sys
 
 def ReadFileFasta(filename):
     """ 
-    - Ler o ficheiro .fasta
-    - Arquivar num dicionario os nomes da sequencia e as suas sequncias respetivas
-    - Ajustar as linhas à direita
-    - Gravar o dicionario num ficheiro .txt
+    - Read the .fasta file
+    - Store in a dictionary the sequence names and their respective sequences
+    - Adjust the lines to the right
+    - Save the dictionary in a .txt file
     """
     filefasta = open(filename, "r")
     dic = {}
@@ -15,9 +15,9 @@ def ReadFileFasta(filename):
             names = names[:99]
             dic[names] = ""
         else:
-            dic[names] += row.strip() #Remover o carcter "\n" dos values do dicionario
+            dic[names] += row.strip() #Remove the "\n" character from dictionary values
     
-    max_width = max(len(key) for key in dic.keys()) + 1 #Define a largura máxima das chaves
+    max_width = max(len(key) for key in dic.keys()) + 1 #Defines the maximum width of the keys
 
     with open("dicionario.txt" , "w")as file:
         s = ""
@@ -31,7 +31,7 @@ def ReadFileFasta(filename):
 
 def NTAXValues(dic):
     """
-    - Contar quantos nomes de sequencia o arquivo .fasta possui
+    - Count how many sequence names the .fasta file has
     """
     count = 0
     for key in dic:
@@ -43,8 +43,8 @@ def NTAXValues(dic):
 
 def NCHARValues(dic):
     """
-    - Contar quantos caracteres as cada sequencia possui
-    - Se alguma sequencia não tiver o mesmo número de caracteres irá printar "Missmatch sequence"
+    - Count how many characters each string has
+    - If any sequence does not have the same number of characters it will print "Missmatch sequence".
     """
     first_lenght = None
     for key, value in dic.items():
@@ -60,8 +60,8 @@ def NCHARValues(dic):
 
 def OutgroupName(dic, outgroupname):
     """
-    - Vai buscar o outgroup pelo dicionario como argumento
-    - Se  o outgroup não estiver no dicionario ele vai printar que não existe
+    - Fetches the outgroup from the dictionary as an argument
+    - If the outgroup is not in the dictionary it will print that it does not exist
     """
     outgroup = None
     for key in dic:
@@ -69,21 +69,21 @@ def OutgroupName(dic, outgroupname):
             outgroup = outgroupname[1:]
             break
     if outgroup is None:
-        print("Não existe nenhum outgroup com esse nome no ficheiro")
+        print("There is no outgroup with that name in the file")
     return outgroup
 
 
 def NGENValue(ngen):
     """
-    - Vai retornar o valor do ngen
+    - Will return the value of ngen
     """
     return ngen
 
 
 def NexusFile(dic,count,first_lenght,otg_name,ng):
     """
-    - Vai abrir o ficheiro de texto no qual está contido o dicionario
-    - Irá printar toda a str de um ficheiro NEXUS de com os valores determinados como argumentos
+    - Will open the text file in which the dictionary is contained
+    - Will print the whole str from a NEXUS file with the values given as arguments
     """
     with open("dicionario.txt", "r") as file:
         dic = file.read()
