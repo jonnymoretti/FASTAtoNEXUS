@@ -108,6 +108,5 @@ if __name__ == "__main__":
     ntax = NTAXValues(dicio_fasta)
     nchar = NCHARValues(dicio_fasta)
     nexus = NexusFile(dicio_fasta,ntax,nchar,out_group,nngen)
-    print(nexus)
     with open("ficheiro_nexus.nex", "w") as file:
         file.write(nexus)
