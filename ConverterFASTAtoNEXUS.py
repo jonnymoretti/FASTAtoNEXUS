@@ -87,7 +87,7 @@ def NexusFile(dic,count,first_lenght,otg_name,ng):
     """
     with open("dicionario.txt", "r") as file:
         dic = file.read()
-
+    
     nexus_str = f"""#NEXUS\nBEGIN DATA;\nDIMENSIONS NTAX = {count} NCHAR = {first_lenght};\nFORMAT DATATYPE=DNA MISSING=N GAP=-;\n
 MATRIX\n{dic}"""
     nexus_str2 = f"""  ;\nEND;\nbegin mrbayes;
@@ -108,5 +108,4 @@ if __name__ == "__main__":
     ntax = NTAXValues(dicio_fasta)
     nchar = NCHARValues(dicio_fasta)
     nexus = NexusFile(dicio_fasta,ntax,nchar,out_group,nngen)
-    with open("ficheiro_nexus.nex", "w") as file:
-        file.write(nexus)
+    print(nexus)
